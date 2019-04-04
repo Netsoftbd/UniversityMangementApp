@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F2821BFA-558A-46AD-A6BF-941187D940EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ums.Persistancis</RootNamespace>
+    <AssemblyName>Ums.Persistancis</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DatabaseFile\UniversityDbContext.cs" />
+    <Compile Include="Migrations\201903030549500_CreateStudentTable.cs" />
+    <Compile Include="Migrations\201903030549500_CreateStudentTable.Designer.cs">
+      <DependentUpon>201903030549500_CreateStudentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903030551585_AddRegInStudent.cs" />
+    <Compile Include="Migrations\201903030551585_AddRegInStudent.Designer.cs">
+      <DependentUpon>201903030551585_AddRegInStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903271755186_AddBaseModelinStudent.cs" />
+    <Compile Include="Migrations\201903271755186_AddBaseModelinStudent.Designer.cs">
+      <DependentUpon>201903271755186_AddBaseModelinStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904031711231_CreateDepartmentTableAndAddDepartmentInStudent.cs" />
+    <Compile Include="Migrations\201904031711231_CreateDepartmentTableAndAddDepartmentInStudent.Designer.cs">
+      <DependentUpon>201904031711231_CreateDepartmentTableAndAddDepartmentInStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904031717208_DepartmentNameRequired.cs" />
+    <Compile Include="Migrations\201904031717208_DepartmentNameRequired.Designer.cs">
+      <DependentUpon>201904031717208_DepartmentNameRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904031718391_StringLengthAddDepartmentPro.cs" />
+    <Compile Include="Migrations\201904031718391_StringLengthAddDepartmentPro.Designer.cs">
+      <DependentUpon>201904031718391_StringLengthAddDepartmentPro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904031805548_StudentRollUnique.cs" />
+    <Compile Include="Migrations\201904031805548_StudentRollUnique.Designer.cs">
+      <DependentUpon>201904031805548_StudentRollUnique.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904041721117_CreateCourseTableAndRelationItStudentAndDepartment.cs" />
+    <Compile Include="Migrations\201904041721117_CreateCourseTableAndRelationItStudentAndDepartment.Designer.cs">
+      <DependentUpon>201904041721117_CreateCourseTableAndRelationItStudentAndDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CourseRepository.cs" />
+    <Compile Include="Repositories\DepartmentRepository.cs" />
+    <Compile Include="Repositories\StudentRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ums.Core\Ums.Core.csproj">
+      <Project>{95039d9e-14b4-4bed-98ed-6b4c3f85993f}</Project>
+      <Name>Ums.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903030549500_CreateStudentTable.resx">
+      <DependentUpon>201903030549500_CreateStudentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903030551585_AddRegInStudent.resx">
+      <DependentUpon>201903030551585_AddRegInStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903271755186_AddBaseModelinStudent.resx">
+      <DependentUpon>201903271755186_AddBaseModelinStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904031711231_CreateDepartmentTableAndAddDepartmentInStudent.resx">
+      <DependentUpon>201904031711231_CreateDepartmentTableAndAddDepartmentInStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904031717208_DepartmentNameRequired.resx">
+      <DependentUpon>201904031717208_DepartmentNameRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904031718391_StringLengthAddDepartmentPro.resx">
+      <DependentUpon>201904031718391_StringLengthAddDepartmentPro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904031805548_StudentRollUnique.resx">
+      <DependentUpon>201904031805548_StudentRollUnique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904041721117_CreateCourseTableAndRelationItStudentAndDepartment.resx">
+      <DependentUpon>201904041721117_CreateCourseTableAndRelationItStudentAndDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

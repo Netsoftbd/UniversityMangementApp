@@ -1,0 +1,62 @@
+﻿@model Ums.Core.ViewModel.StudentViewModel
+@{
+    ViewBag.Title = "StudentForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("StudentForm", "Students", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+
+            <div class="form-group">
+                @Html.LabelFor(c => c.Name)
+                @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(c => c.Roll)
+                @Html.TextBoxFor(c => c.Roll, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Roll, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(c => c.Reg)
+                @Html.TextBoxFor(c => c.Reg, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Reg, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(c => c.DepartmentId)
+                @Html.DropDownList("DepartmentId", null, "", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.DepartmentId, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(c => c.CourseId)
+                @Html.DropDownList("CourseId", null, "", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.CourseId, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.HiddenFor(c => c.Id)
+                <input type="submit" class="btn btn-primary" value="Submit" name="submit" />
+            </div>
+
+            <div class="form-group">
+                <label>@ViewBag.Message</label>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval");
+
+    <script src="~/Scripts/Students/studentForm.js"></script>
+
+}
+
