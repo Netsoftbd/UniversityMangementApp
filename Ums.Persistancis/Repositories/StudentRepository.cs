@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Ums.Core.Dto;
 using Ums.Core.Models;
+using Ums.Core.ViewModel;
 using Ums.Persistancis.DatabaseFile;
 
 namespace Ums.Persistancis.Repositories
@@ -38,6 +39,25 @@ namespace Ums.Persistancis.Repositories
             return s.Id;
         }
 
+        public int Update(int id, StudentViewModel vm)
+        {
+            var studentInDb = _dbContext.Students.Find(id);
+            if (studentInDb != null)
+            {
+                var createBy = studentInDb.CreateBy;
+                var createDate = studentInDb.CreateDate;
+
+                Mapper.Map(vm, studentInDb);
+                studentInDb.CreateBy = createBy;
+                studentInDb.CreateDate = createDate;
+
+                return _dbContext.SaveChanges();
+
+            }
+
+            return 0;
+        }
+
         //public int Update(Student s)
 
         public List<Student> GetAll()
@@ -46,5 +66,10 @@ namespace Ums.Persistancis.Repositories
         }
 
 
+        public StudentViewModel GetById(int id)
+        {
+            var s = _dbContext.Students.Find(id);
+            return Mapper.Map<Student, StudentViewModel>(s);
+        }
     }
 }

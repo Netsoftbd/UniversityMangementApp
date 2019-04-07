@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Ums.Core.Dto;
 using Ums.Core.Models;
+using Ums.Core.ViewModel;
 using Ums.Persistancis.Repositories;
 
 namespace Ums.Manager
@@ -30,6 +31,14 @@ namespace Ums.Manager
             return "Save Fail";
         }
 
+        public string Update(int id, StudentViewModel vm)
+        {
+            var result = _studentRepository.Update(id, vm);
+            if (result > 0)
+                return "Update Success";
+            return "Update Fail";
+        }
+
         public bool IsRollExist(string roll)
         {
             bool isRollExist = false;
@@ -45,6 +54,12 @@ namespace Ums.Manager
         public List<Student> GetAll()
         {
             return _studentRepository.GetAll();
+        }
+
+        public StudentViewModel GetById(int id)
+        {
+            return _studentRepository.GetById(id);
+
         }
     }
 }
