@@ -61,5 +61,10 @@ namespace Ums.Manager
             return _studentRepository.GetById(id);
 
         }
+
+        public int Delete(int id)
+        {
+            return _studentRepository.Delete(id);
+        }
     }
 }

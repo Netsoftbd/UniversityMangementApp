@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Ums.Core.Dto;
 using Ums.Core.Models;
@@ -62,7 +63,10 @@ namespace Ums.Persistancis.Repositories
 
         public List<Student> GetAll()
         {
-            return _dbContext.Students.Where(c => !c.IsDeleted).ToList();
+            return _dbContext.Students
+                .Include(c => c.Department)
+                .Include(c => c.Course)
+                .Where(c => !c.IsDeleted).ToList();
         }
 
 
@@ -70,6 +74,18 @@ namespace Ums.Persistancis.Repositories
         {
             var s = _dbContext.Students.Find(id);
             return Mapper.Map<Student, StudentViewModel>(s);
+        }
+
+        public int Delete(int id)
+        {
+            var s = _dbContext.Students.Find(id);
+            if (s != null)
+            {
+                _dbContext.Students.Remove(s);
+                return _dbContext.SaveChanges();
+            }
+
+            return 0;
         }
     }
 }

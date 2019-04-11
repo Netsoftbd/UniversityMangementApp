@@ -102,5 +102,11 @@ namespace Ums.MvcApp.Controllers
             var courses = _courseManager.GetCoursesByDepartment(departmentId);
             return Json(courses, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult DeleteStudent(int id)
+        {
+            var success = _studentManager.Delete(id);
+            return Json(success, JsonRequestBehavior.AllowGet);
+        }
     }
 }

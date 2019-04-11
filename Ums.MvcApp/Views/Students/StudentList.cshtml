@@ -15,9 +15,10 @@
                         @Html.ActionLink("Student Form", "StudentForm")
                     </p>
                 </div>
-                
+
                 <div class="col-md-12">
-                    <table class="table">
+                    <table class="table" id="example">
+                        <thead>
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.Name)
@@ -36,37 +37,71 @@
                             </th>
                             <th></th>
                         </tr>
-
-                        @foreach (var item in Model) {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Roll)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Reg)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DepartmentId)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CourseId)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "StudentForm", new { id=item.Id }) |
-                                    @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
-                                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-                                </td>
-                            </tr>
-                        }
-
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Roll)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Reg)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Department.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Course.Name)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "StudentForm", new { id = item.Id }) |
+                                        @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+                                        <a class="btn btn-danger js-delete" data-id="@item.Id">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section scripts
+{
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/bootbox.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+
+        $(document.body).on("click", ".js-delete", function () {
+            var $button = $(this);
+            var id = $button.attr("data-id");
+            if (id > 0) {
+                bootbox.confirm("Are you sure to delete this data?",
+                    function (result) {
+                        if (result) {
+                            $.get("/Students/DeleteStudent", { id: id })
+                                .done(function (data) {
+                                    if (data > 0) {
+                                        alert("Success");
+                                        location.reload();
+                                    } else {
+                                        alert("fail");
+                                    }
+                                });
+                        }
+                    });
+            }
+        })
+    </script>
+}
 
 
