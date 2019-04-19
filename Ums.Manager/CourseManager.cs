@@ -17,5 +17,15 @@ namespace Ums.Manager
         {
             return _courseRepository.GetCoursesByDepartment(departmentId);
         }
+
+        public IEnumerable<Course> Get()
+        {
+            return _courseRepository.Get();
+        }
+
+        public string Save(Course course)
+        {
+            return _courseRepository.Save(course);
+        }
     }
 }

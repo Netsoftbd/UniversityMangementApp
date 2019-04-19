@@ -18,5 +18,22 @@ namespace Ums.Persistancis.Repositories
         {
             return _dbContext.Courses.Where(c => c.DepartmentId == departmentId);
         }
+
+        public IEnumerable<Course> Get()
+        {
+            return _dbContext.Courses;
+        }
+
+        public string Save(Course course)
+        {
+            _dbContext.Courses.Add(course);
+            var success = _dbContext.SaveChanges();
+            if (success > 0)
+            {
+                return "Save Success";
+            }
+
+            return "Save Fail";
+        }
     }
 }

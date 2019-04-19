@@ -1,7 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System.Web.Http;
+using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Ums.Core.AutoMapperConfigFiles;
+using Ums.MvcApp.App_Start;
 
 namespace Ums.MvcApp
 {
@@ -10,6 +12,8 @@ namespace Ums.MvcApp
         protected void Application_Start()
         {
             AutoMapperConfiguration.Configure();
+
+            GlobalConfiguration.Configure(WebApiConfig.Register);
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
